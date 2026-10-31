@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auri Alves — Designer de Produto & UI/UX</title>
+  
+  <!-- CSS Principal -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Link de acessibilidade para navegação rápida via teclado -->
+  <a href="#conteudo-principal" class="link-pular">Pular para o conteúdo</a>
+
+  <!-- CABEÇALHO REUTILIZÁVEL -->
+  <header class="cabecalho">
+    <div class="container cabecalho-conteudo">
+      <a href="index.html" class="logo" aria-label="Auri Alves - Página inicial">A.</a>
+      
+      <nav aria-label="Navegação principal">
+        <ul class="menu">
+          <li><a href="index.html" class="menu-link ativo" aria-current="page">Início</a></li>
+          <li><a href="sobre.html" class="menu-link">Sobre</a></li>
+          <li><a href="#" class="menu-link" target="_blank" rel="noopener noreferrer">Currículo</a></li>
+          <li><a href="https://linkedin.com" class="menu-link" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main id="conteudo-principal">
+    <div class="container">
+
+      <!-- HERO SECTION -->
+      <section class="hero" aria-labelledby="titulo-hero">
+        <h1 id="titulo-hero" class="hero-titulo">Olá, sou a Auri</h1>
+        <p class="hero-subtitulo">
+          Atuo como <strong>Senior Product Designer</strong> na <strong>Sicredi</strong>, transformando dados e fluxos complexos em soluções digitais simples e focadas no usuário.
+        </p>
+      </section>
+
+      <!-- SEÇÃO DE CASES / PROJETOS DA HOME -->
+      <section class="secao-cases" aria-label="Projetos em Destaque">
+        <div class="grade-cases">
+
+          <!-- CASE 1: copie daqui até FIM DO CASE 1 -->
+          <article>
+            <a href="case-1.html" class="cartao-case" aria-labelledby="case-1-titulo">
+              <!-- IMAGEM: troque o arquivo img/case-1-capa.jpg -->
+              <div class="imagem" style="--proporcao: 1 / 1;">
+                <img src="img/case-1-capa.jpg" alt="Capa do projeto Redesign do App Financeiro Sicredi" loading="lazy">
+              </div>
+              <h2 id="case-1-titulo" class="cartao-case-titulo">
+                App Financeiro Sicredi
+              </h2>
+              <p class="cartao-case-descricao">
+                Redesign da experiência de transferências Pix reduzindo o tempo de conclusão das transações em 35%.
+              </p>
+            </a>
+          </article>
+          <!-- FIM DO CASE 1 -->
+
+          <!-- CASE 2: copie daqui até FIM DO CASE 2 -->
+          <article>
+            <a href="case-2.html" class="cartao-case" aria-labelledby="case-2-titulo">
+              <!-- IMAGEM: troque o arquivo img/case-2-capa.jpg -->
+              <div class="imagem" style="--proporcao: 1 / 1;">
+                <img src="img/case-2-capa.jpg" alt="Capa do projeto Sistema de Design Multiplataforma" loading="lazy">
+              </div>
+              <h2 id="case-2-titulo" class="cartao-case-titulo">
+                Design System Unificado
+              </h2>
+              <p class="cartao-case-descricao">
+                Criação de tokens e biblioteca de componentes reutilizáveis para mais de 12 equipes de produto.
+              </p>
+            </a>
+          </article>
+          <!-- FIM DO CASE 2 -->
+
+        </div>
+      </section>
+
+      <!-- BLOCO DE CONTATO REUTILIZÁVEL -->
+      <section id="contato" class="bloco-contato" aria-labelledby="titulo-contato">
+        <p class="contato-rotulo">👋 Fale comigo em</p>
+        <a href="mailto:auri@exemplo.com" class="contato-email">auri@exemplo.com</a>
+        <div class="contato-acoes">
+          <a href="https://linkedin.com" class="botao" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- RODAPÉ REUTILIZÁVEL -->
+  <footer class="rodape">
+    <div class="container">
+      <hr class="rodape-linha">
+      <div class="rodape-conteudo">
+        <ul class="rodape-menu" aria-label="Navegação do rodapé">
+          <li><a href="index.html" class="rodape-link">Início</a></li>
+          <li><a href="sobre.html" class="rodape-link">Sobre</a></li>
+          <li><a href="#" class="rodape-link" target="_blank" rel="noopener noreferrer">Currículo</a></li>
+        </ul>
+        <div>
+          <a href="https://linkedin.com" class="rodape-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
