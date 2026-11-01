@@ -1,0 +1,793 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;700&family=DM+Sans:wght@300;400;500;700&display=swap");
+
+/* ==========================================================================
+   STYLE.CSS — Portfólio UI/UX (serve a index, sobre e case)
+   Seções: 1 Variáveis · 2 Base · 3 Cabeçalho · 4 Home · 5 Sobre · 6 Case · 7 Rodapé
+   Mobile-first: o padrão é o celular; ajustes em 768px e 1200px.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. VARIÁVEIS — edite aqui para mudar o visual
+   ========================================================================== */
+:root {
+  /* Cores */
+  --cor-fundo: #F0F1F3;
+  --cor-imagem: #E8E8E8;
+  --cor-texto: #1A1A1A;
+  --cor-texto-secundario: #666666;
+  --cor-botao-fundo: #333333;
+  --cor-botao-texto: #FFFFFF;
+  --cor-link: #8A6100;
+  --cor-destaque: #FF37D0; /* só decoração, nunca em texto */
+  --cor-linha: #222222;
+
+  /* Fontes (com reserva do sistema) */
+  --fonte-titulo: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --fonte-texto: "DM Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+
+  /* Pesos */
+  --peso-leve: 300;
+  --peso-normal: 400;
+  --peso-medio: 500;
+  --peso-negrito: 700;
+
+  /* Tamanhos de texto (celular) */
+  --tam-titulo-principal: 46px;
+  --tam-subtitulo: 19px;
+  --tam-titulo-pagina: 38px;
+  --tam-nome-case-card: 27px;
+  --tam-descricao-card: 16px;
+  --tam-titulo-secao: 27px;
+  --tam-paragrafo: 16px;
+  --tam-numero-resultado: 48px;
+  --tam-email: 24px;
+  --tam-menu: 16px;
+
+  /* Detalhes de texto */
+  --entrelinha-titulo: 1.05;
+  --entrelinha-texto: 1.6;
+  --espacamento-titulo: -0.02em;
+
+  /* Espaçamentos (celular) */
+  --largura-conteudo: 1160px;
+  --margem-lateral: 24px;
+  --espaco-secao: 80px;
+  --espaco-cards: 40px;
+  --coluna-sobre: 560px;
+  --coluna-case: 756px;
+  --margem-ancora: 96px;
+
+  /* Espaços pequenos */
+  --espaco-xs: 8px;
+  --espaco-s: 16px;
+  --espaco-m: 24px;
+  --espaco-l: 40px;
+
+  /* Botão */
+  --altura-botao: 44px;
+  --espaco-botao: 24px;
+  --raio-pilula: 999px;
+
+  /* Linhas, foco e decoração */
+  --espessura-linha: 1px;
+  --espessura-foco: 3px;
+  --distancia-foco: 4px;
+  --espessura-sublinhado: 2px;
+  --decoracao-largura: 72px;
+  --decoracao-altura: 8px;
+
+  /* Imagens e animação */
+  --proporcao: 1 / 1;
+  --duracao-abertura: 600ms;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --tam-titulo-principal: 67px;
+    --tam-subtitulo: 22px;
+    --tam-titulo-pagina: 51px;
+    --tam-nome-case-card: 32px;
+    --tam-descricao-card: 18px;
+    --tam-titulo-secao: 32px;
+    --tam-paragrafo: 17px;
+    --tam-numero-resultado: 59px;
+    --tam-email: 32px;
+
+    --margem-lateral: 48px;
+    --espaco-secao: 105px;
+    --espaco-cards: 43px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --tam-titulo-principal: 88px;
+    --tam-subtitulo: 26px;
+    --tam-titulo-pagina: 64px;
+    --tam-nome-case-card: 38px;
+    --tam-descricao-card: 20px;
+    --tam-titulo-secao: 38px;
+    --tam-paragrafo: 18px;
+    --tam-numero-resultado: 70px;
+    --tam-email: 40px;
+    --tam-menu: 17px;
+
+    --margem-lateral: 120px;
+    --espaco-secao: 130px;
+    --espaco-cards: 46px;
+  }
+}
+
+
+/* ==========================================================================
+   2. BASE — reset, texto, links, imagens, botão, foco, animação
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: var(--fonte-texto);
+  font-size: var(--tam-paragrafo);
+  font-weight: var(--peso-normal);
+  line-height: var(--entrelinha-texto);
+}
+
+h1, h2, h3, p, ul, figure {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+/* Container: mesma borda esquerda em todas as páginas */
+.container {
+  width: 100%;
+  max-width: calc(var(--largura-conteudo) + 2 * var(--margem-lateral));
+  margin-inline: auto;
+  padding-inline: var(--margem-lateral);
+}
+
+/* Títulos */
+.titulo-principal,
+.titulo-pagina,
+.titulo-secao,
+.card-nome {
+  font-family: var(--fonte-titulo);
+  font-weight: var(--peso-negrito);
+  line-height: var(--entrelinha-titulo);
+  letter-spacing: var(--espacamento-titulo);
+  overflow-wrap: break-word;
+}
+
+.titulo-principal { font-size: var(--tam-titulo-principal); }
+.titulo-pagina    { font-size: var(--tam-titulo-pagina); }
+.titulo-secao     { font-size: var(--tam-titulo-secao); }
+
+/* Parágrafo e link dentro do texto */
+.paragrafo {
+  font-size: var(--tam-paragrafo);
+  line-height: var(--entrelinha-texto);
+}
+
+.paragrafo + .paragrafo {
+  margin-top: var(--espaco-s);
+}
+
+.paragrafo a,
+.link-texto {
+  color: var(--cor-link);
+  text-decoration: underline;
+  text-underline-offset: var(--distancia-foco);
+}
+
+.paragrafo a:hover,
+.link-texto:hover {
+  text-decoration-thickness: var(--espessura-sublinhado);
+}
+
+.texto-secundario {
+  color: var(--cor-texto-secundario);
+}
+
+/* Imagens: um único padrão. Sem foto, aparece o bloco cinza.
+   Outra proporção: <div class="imagem" style="--proporcao: 16 / 9"> */
+.imagem {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--proporcao);
+  background: var(--cor-imagem);
+  overflow: hidden;
+}
+
+.imagem img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  color: transparent; /* esconde o texto alternativo se a foto faltar */
+}
+
+/* Cobre o ícone de imagem quebrada (só aparece quando o arquivo não existe) */
+.imagem img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--cor-imagem);
+}
+
+/* Botão em pílula */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--altura-botao);
+  padding: 0 var(--espaco-botao);
+  background: var(--cor-botao-fundo);
+  color: var(--cor-botao-texto);
+  font-family: var(--fonte-texto);
+  font-size: var(--tam-menu);
+  font-weight: var(--peso-medio);
+  line-height: 1;
+  text-decoration: none;
+  border-radius: var(--raio-pilula);
+}
+
+.botao:hover {
+  background: var(--cor-texto);
+}
+
+/* Decoração (só visual): barra na cor de destaque */
+.decoracao {
+  display: block;
+  width: var(--decoracao-largura);
+  height: var(--decoracao-altura);
+  background: var(--cor-destaque);
+  border-radius: var(--raio-pilula);
+}
+
+/* Foco visível (nunca remova o outline) */
+a:focus-visible {
+  outline: var(--espessura-foco) solid var(--cor-texto);
+  outline-offset: var(--distancia-foco);
+}
+
+/* Texto só para leitor de tela */
+.so-leitor {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Link "pular para o conteúdo": aparece só com o teclado */
+.pular-conteudo {
+  position: absolute;
+  top: var(--espaco-xs);
+  left: var(--espaco-xs);
+  z-index: 20;
+  padding: var(--espaco-xs) var(--espaco-s);
+  background: var(--cor-botao-fundo);
+  color: var(--cor-botao-texto);
+  font-weight: var(--peso-medio);
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.pular-conteudo:focus-visible {
+  transform: none;
+}
+
+/* Animação só de abertura (desligada para quem prefere menos movimento) */
+@keyframes abrir {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+main {
+  animation: abrir var(--duracao-abertura) ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main {
+    animation: none;
+  }
+}
+
+
+/* ==========================================================================
+   3. CABEÇALHO — logo à esquerda, menu à direita, sempre visível
+   ========================================================================== */
+.cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--cor-fundo);
+  border-bottom: var(--espessura-linha) solid var(--cor-linha);
+}
+
+.cabecalho-interno {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-xs) var(--espaco-m);
+  padding-block: var(--espaco-s);
+}
+
+.logo {
+  font-family: var(--fonte-titulo);
+  font-size: var(--tam-nome-case-card);
+  font-weight: var(--peso-negrito);
+  line-height: 1;
+  color: var(--cor-texto);
+  text-decoration: none;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--espaco-xs) var(--espaco-m);
+}
+
+.menu a {
+  color: var(--cor-texto);
+  font-size: var(--tam-menu);
+  font-weight: var(--peso-medio);
+  text-decoration: none;
+}
+
+.menu a:hover,
+.menu a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-color: var(--cor-destaque);
+  text-decoration-thickness: var(--espessura-foco);
+  text-underline-offset: var(--distancia-foco);
+}
+
+
+/* ==========================================================================
+   4. HOME — hero, grade de cases, contato
+   ========================================================================== */
+.hero {
+  padding-top: var(--espaco-secao);
+}
+
+.hero-subtitulo {
+  max-width: var(--coluna-sobre);
+  margin-top: var(--espaco-m);
+  color: var(--cor-texto-secundario);
+  font-size: var(--tam-subtitulo);
+  font-weight: var(--peso-normal);
+  line-height: var(--entrelinha-texto);
+}
+
+.hero-subtitulo strong {
+  color: var(--cor-texto);
+  font-weight: var(--peso-negrito);
+}
+
+.hero .decoracao {
+  margin-top: var(--espaco-l);
+}
+
+.cases {
+  padding-top: var(--espaco-secao);
+}
+
+.grade-cases {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--espaco-cards);
+}
+
+@media (min-width: 768px) {
+  .grade-cases {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Card inteiro clicável */
+.card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-nome {
+  margin-top: var(--espaco-m);
+  font-size: var(--tam-nome-case-card);
+}
+
+.card-link:hover .card-nome {
+  text-decoration: underline;
+  text-decoration-color: var(--cor-destaque);
+  text-decoration-thickness: var(--espessura-foco);
+  text-underline-offset: var(--distancia-foco);
+}
+
+.card-descricao {
+  margin-top: var(--espaco-xs);
+  color: var(--cor-texto-secundario);
+  font-size: var(--tam-descricao-card);
+  line-height: var(--entrelinha-texto);
+}
+
+/* Bloco de contato (reaproveitado em todas as páginas) */
+.contato {
+  margin-top: var(--espaco-secao);
+  padding-top: var(--espaco-secao);
+  border-top: var(--espessura-linha) solid var(--cor-linha);
+  scroll-margin-top: var(--margem-ancora);
+}
+
+.contato-chamada {
+  font-size: var(--tam-paragrafo);
+  font-weight: var(--peso-medio);
+}
+
+.contato-email {
+  display: inline-block;
+  margin-top: var(--espaco-xs);
+  color: var(--cor-texto);
+  font-family: var(--fonte-titulo);
+  font-size: var(--tam-email);
+  font-weight: var(--peso-negrito);
+  line-height: var(--entrelinha-titulo);
+  text-decoration: underline;
+  text-decoration-color: var(--cor-destaque);
+  text-decoration-thickness: var(--espessura-foco);
+  text-underline-offset: var(--distancia-foco);
+  overflow-wrap: anywhere;
+}
+
+.contato .botao {
+  margin-top: var(--espaco-l);
+}
+
+
+/* ==========================================================================
+   5. SOBRE — texto na coluna de 560px + foto
+   ========================================================================== */
+.sobre {
+  padding-top: var(--espaco-secao);
+}
+
+.sobre-grade {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--espaco-l);
+}
+
+.coluna-sobre {
+  max-width: var(--coluna-sobre);
+}
+
+.coluna-sobre .titulo-pagina {
+  margin-bottom: var(--espaco-m);
+}
+
+.sobre-foto {
+  max-width: var(--coluna-sobre);
+}
+
+@media (min-width: 1200px) {
+  .sobre-grade {
+    grid-template-columns: var(--coluna-sobre) minmax(0, 1fr);
+    gap: var(--espaco-secao);
+    align-items: start;
+  }
+}
+
+
+/* ==========================================================================
+   6. CASE — nome, capa, informações, seções e resultados
+   ========================================================================== */
+.case-cabecalho {
+  padding-top: var(--espaco-secao);
+}
+
+.case-cabecalho .titulo-pagina {
+  max-width: var(--coluna-case);
+}
+
+.case-resumo {
+  max-width: var(--coluna-case);
+  margin-top: var(--espaco-m);
+  color: var(--cor-texto-secundario);
+  font-size: var(--tam-subtitulo);
+  line-height: var(--entrelinha-texto);
+}
+
+.case-capa {
+  margin-top: var(--espaco-l);
+}
+
+/* Informações rápidas (papel, prazo, ferramentas) */
+.case-info {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--espaco-m);
+  margin-top: var(--espaco-l);
+  padding-top: var(--espaco-m);
+  border-top: var(--espessura-linha) solid var(--cor-linha);
+}
+
+.case-info-rotulo {
+  color: var(--cor-texto-secundario);
+  font-size: var(--tam-menu);
+}
+
+.case-info-valor {
+  font-weight: var(--peso-medio);
+}
+
+.case-secao {
+  padding-top: var(--espaco-secao);
+}
+
+.coluna-case {
+  max-width: var(--coluna-case);
+}
+
+.coluna-case .titulo-secao {
+  margin-bottom: var(--espaco-s);
+}
+
+.case-imagem {
+  margin-top: var(--espaco-l);
+}
+
+/* Resultados com números grandes */
+.resultados {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--espaco-l);
+  margin-top: var(--espaco-l);
+}
+
+.resultado-numero {
+  font-family: var(--fonte-titulo);
+  font-size: var(--tam-numero-resultado);
+  font-weight: var(--peso-negrito);
+  line-height: var(--entrelinha-titulo);
+  letter-spacing: var(--espacamento-titulo);
+}
+
+.resultado-texto {
+  margin-top: var(--espaco-xs);
+  color: var(--cor-texto-secundario);
+}
+
+@media (min-width: 768px) {
+  .case-info {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .resultados {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+
+/* ==========================================================================
+   7. RODAPÉ — linha divisória, menu à esquerda, LinkedIn à direita
+   ========================================================================== */
+.rodape {
+  margin-top: var(--espaco-secao);
+  border-top: var(--espessura-linha) solid var(--cor-linha);
+}
+
+.rodape-interno {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-s) var(--espaco-m);
+  padding-block: var(--espaco-m);
+}
+
+.rodape-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-xs) var(--espaco-m);
+}
+
+.rodape a {
+  color: var(--cor-texto);
+  font-size: var(--tam-menu);
+  font-weight: var(--peso-medio);
+  text-decoration: none;
+}
+
+.rodape a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--cor-destaque);
+  text-decoration-thickness: var(--espessura-foco);
+  text-underline-offset: var(--distancia-foco);
+}
+
+
+/* ==========================================================================
+   PÁGINA SOBRE — só o que é novo (o resto vem das seções acima)
+   ========================================================================== */
+:root {
+  /* Nome da instituição / empresa / grupo de habilidades */
+  --tam-nome-item: 28px;
+  /* Foto da página sobre */
+  --largura-foto-sobre: 400px;
+  /* Recuo do detalhe abaixo do nome */
+  --recuo-detalhe: 16px;
+}
+
+/* Foto quadrada, até 400px */
+.sobre-foto {
+  max-width: var(--largura-foto-sobre);
+}
+
+/* Duas colunas no desktop: texto à esquerda, foto à direita */
+@media (min-width: 1200px) {
+  .sobre-grade {
+    grid-template-columns: var(--coluna-sobre) minmax(0, var(--largura-foto-sobre));
+    justify-content: space-between;
+    gap: var(--espaco-l);
+  }
+}
+
+/* Botão Currículo abaixo dos parágrafos */
+.sobre-acoes {
+  margin-top: var(--espaco-l);
+}
+
+/* Seções Formação, Experiência e Habilidades */
+.sobre-secao {
+  padding-top: var(--espaco-secao);
+}
+
+.sobre-secao .titulo-secao {
+  margin-bottom: var(--espaco-m);
+}
+
+.lista-itens {
+  max-width: var(--coluna-sobre);
+}
+
+.item + .item {
+  margin-top: var(--espaco-m);
+}
+
+.item-nome {
+  font-family: var(--fonte-titulo);
+  font-size: var(--tam-nome-item);
+  font-weight: var(--peso-leve);
+  line-height: var(--entrelinha-titulo);
+  letter-spacing: var(--espacamento-titulo);
+  overflow-wrap: break-word;
+}
+
+.item-detalhe {
+  margin-top: var(--espaco-xs);
+  padding-left: var(--recuo-detalhe);
+  color: var(--cor-texto-secundario);
+  font-size: var(--tam-paragrafo);
+  line-height: var(--entrelinha-texto);
+}
+
+
+/* ==========================================================================
+   PÁGINA DE CASE — só o que é novo (o resto vem das seções acima)
+   ========================================================================== */
+:root {
+  /* Título de bloco */
+  --tam-titulo-bloco: 30px;
+  --peso-titulo-bloco: 500;
+  /* Legenda do número de resultado */
+  --tam-legenda-resultado: 30px;
+  --entrelinha-legenda: 1.2;
+  /* Rótulo de Papel / Equipe */
+  --tam-rotulo-case: 18px;
+  --peso-rotulo-case: 500;
+  --espacamento-rotulo-case: 0.04em;
+  /* Texto dos blocos */
+  --entrelinha-bloco: 1.7;
+}
+
+/* Topo: nome e subtítulo à esquerda, imagem horizontal à direita
+   (no celular a imagem vai para baixo do texto) */
+.case-topo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--espaco-l);
+}
+
+.case-topo .case-capa {
+  margin-top: 0;
+}
+
+@media (min-width: 1200px) {
+  .case-topo {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+  }
+}
+
+/* Papel e Equipe: sempre duas colunas */
+.case-info {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.case-info-rotulo {
+  margin-bottom: var(--espaco-xs);
+  font-size: var(--tam-rotulo-case);
+  font-weight: var(--peso-rotulo-case);
+  letter-spacing: var(--espacamento-rotulo-case);
+  text-transform: uppercase;
+}
+
+/* Blocos de texto */
+.bloco-titulo {
+  margin-bottom: var(--espaco-s);
+  font-family: var(--fonte-titulo);
+  font-size: var(--tam-titulo-bloco);
+  font-weight: var(--peso-titulo-bloco);
+  line-height: var(--entrelinha-titulo);
+  letter-spacing: var(--espacamento-titulo);
+  overflow-wrap: break-word;
+}
+
+.bloco-texto {
+  line-height: var(--entrelinha-bloco);
+}
+
+/* Legenda da imagem do bloco */
+.case-legenda {
+  margin-top: var(--espaco-s);
+  color: var(--cor-texto-secundario);
+  font-size: var(--tam-menu);
+  font-style: italic;
+  text-align: center;
+}
+
+/* Resultados: 2 por linha no celular, 4 no desktop */
+.resultados {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 1200px) {
+  .resultados {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.resultado-numero {
+  overflow-wrap: anywhere;
+}
+
+.resultado-texto {
+  font-size: var(--tam-legenda-resultado);
+  line-height: var(--entrelinha-legenda);
+  overflow-wrap: break-word;
+}
+
+/* Veja outros cases */
+.case-outros .titulo-secao {
+  margin-bottom: var(--espaco-l);
+}
